@@ -18,7 +18,7 @@ private AUTH_HEADER = "Authorization";
     let intReq = req;
     const token = this.tokenService.getToken();
     
-if (token!=null) {
+if (token!='') {
 const modifiedReq = req.clone({ 
   setHeaders: {
     'Content-Type': 'application/json; charset=utf-8',
