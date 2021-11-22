@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('token: ' + this.tokenService.getToken())
     if (this.tokenService.getToken()){
+      console.log('paso el if del token')
       this.isLogged = true;
       this.roles = this.tokenService.getAuthorities();
       this.router.navigate(['/home']);
