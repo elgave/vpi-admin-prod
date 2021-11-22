@@ -1,0 +1,110 @@
+<app-nav-menu></app-nav-menu>
+<div class="container">
+    <div class="row">
+        <div class="redondo contitulo col-md-1 "></div>
+        <div class="redondo contitulo col-md-10 bg-white">
+            <div class="title div-s">
+                <span> Listado de Restaurantes </span>
+            </div>
+            <br>
+            <br>
+            <nav class="navbar filtros">
+
+                <div class="container-fluid">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="capturar()">
+                        <option selected value="Pendientes">Pendientes</option>
+                        <option value="Aprobados">Aprobados</option>
+                    </select>
+                    <!--<button type="button" class="btn btn-warning btn-rounded nav-btn">Bloqueados</button>
+                    <form class="search-container" action="//llamaswill.tumblr.com/search">
+                        <input id="search-box" type="text" class="search-box" name="q" />
+                        <label for="search-box"><span class="fas fa-search"></span></label>
+                        <input type="submit" id="search-submit" />
+                    </form>-->
+                </div>
+            </nav>
+            <div class="table_usuarios">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>RUT</th>
+                            <th *ngIf="pendientes">Estado</th>
+                            <th *ngIf="!pendientes">CalificacionVPI</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <!-- <tbody *ngFor="let usuario of usuarios" -->
+                    <tbody *ngFor="let restaurante of restaurantes; let i=index ">
+                        <tr>
+                            <td>{{restaurante.email}}</td>
+                            <td>{{restaurante.nombreRestaurante}}</td>
+                            <td>{{restaurante.direccion}}</td>
+                            <td>{{restaurante.rut}}</td>
+                            <td *ngIf="!restaurante.confirmado">Pendiente</td>
+                            <th *ngIf="!pendientes">{{restaurante.calificacionVPI}}</th>
+                            <td>
+                                <!--aporbar alta de usuario -->
+                                <!--Antes:  <a (click)="seleccionar(restaurante)"><i class="far fa-check-circle"></i></a>-->
+                                <a *ngIf="pendientes" (click)="detalleRest(restaurante.nombreRestaurante)"><i class="fas fa-search"></i></a>
+                                <!--rechazar alta de usuario -->
+                                <!--<a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario"><i class="fas fa-backspace"></i></a>-->
+                                <!--Esto genera la calificación VPI para el restaurante -->
+                                <!-- creo que el <a> va con un *ngIf si el estado es aprobado -->
+                                <a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#califiacionVPI"><i class="fas fa-star"></i></a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="califiacionVPI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Calificación VPI</h5>
+                                                <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                                            </div>
+                                            <div class="modal-body" *ngIf="ready">
+                                                <h6 class="h6">Se generara la calificación VPI para el restaurante {{restauranteSeleccionado.nombreRestaurante}}</h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" (click)="calificar(restauranteSeleccionado.email)" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Calificar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin del modal -->
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="rechazarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header delete">
+                                                <h5 class="modal-title" id="exampleModalLabel">Rechazar Restaurante</h5>
+                                                <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                                            </div>
+                                            <div class="modal-body" *ngIf="ready">
+                                                <h6 class="delete-h6">Se rechazará la solicitud del restaurante {{restauranteSeleccionado.nombreRestaurante}}</h6>
+                                            </div>
+                                            <div class="form-outline" (ngSubmit)="rechazarRestaurante()" novalidate>
+                                                <input type="text" id="form12" class="form-control" [(ngModel)]="motivo" />
+                                                <label class="form-label" for="form12">Ingrese motivo de rechazo</label>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" data-mdb-dismiss="modal">
+                                                Cancelar
+                                                </button>
+
+                                                <button type="button" (click)="rechazarRestaurante()" data-mdb-dismiss="modal" class="btn btn-warning btn-rounded delete">Confirmar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin del modal -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

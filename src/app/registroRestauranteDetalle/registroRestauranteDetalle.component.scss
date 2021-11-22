@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@100&display=swap');
+.title{
+    background-color: #39B3D7;
+    height: 50px;
+    width: auto;
+    position: absolute;
+    border-radius: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+.title span{
+    color: #ffff;
+    font-size: 15px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.div-s{
+    margin-bottom: 50px;
+}
+.div-s:hover{
+    background-color: #3f9ebb;
+    cursor: pointer;
+}
+.list-unstyled_li{
+    color: #fdcc46;
+    font-weight: bold;
+}
+.item-list{
+    text-align: left;
+    font-family: 'Poppins',sans-serif ;
+    font-size: 13px;
+}
+.redondo {
+    border-radius: 30px;
+}
+.col-md-10{
+    height: 620px;
+    border-radius: 30px;
+}
+.container{
+    margin-left: 240px;
+}
+.form-outline{
+    margin: 20px 15px;
+}
+.form-outline{
+    margin: 50px;
+    display: block;
+    width: 250px !important;
+}
+.form-outline{
+    width: 350px;
+}
+.form_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+p{
+    font-family: 'Poppins', sans-serif;
+}
+.conteiner_action{
+    display: flex;
+    justify-content: center;
+}
+.confirmar{
+    margin-left: 250px;
+}
+label, input{
+    font-family: 'Poppins', sans-serif;   
+}
+input{
+    margin: 0;
+}
+#ex1, .tab-content{
+  margin: 30px 30px 0 30px;
+}
+label{
+  display: block;
+}
+input{
+  display: block;
+  margin-right: 20px;
+  border-radius: 30px !important;
+}
+.container-img{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.col-md-10{
+  overflow-y: scroll;
+}
+.row{
+  margin-top: 15px;
+}
+#img-menu{
+  margin-top: 20px;
+  height: 250px;
+}
+.buttons-cont{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.btn{
+  padding: 10px 60px;
+  text-align: center;
+  margin-right: 30px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+  color: #39B3D7 ;
+  border-color: #39B3D7 ;
+  margin-top: 5px;
+}

@@ -1,0 +1,128 @@
+<app-nav-menu></app-nav-menu>
+<div class="container">
+    <div class="row" id="cont">
+        <div class="redondo contitulo col-md-1 "></div>
+        <div class="redondo contitulo col-md-10 bg-white">
+            <div class="title div-s">
+                <span> Detalle del restaurante</span>
+            </div>
+            <!-- Tabs navs -->
+            <ul class="nav nav-tabs nav-fill mb-4" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="ex2-tab-1" data-mdb-toggle="tab" href="#ex2-tabs-1" role="tab" aria-controls="ex2-tabs-1" aria-selected="true">Información General</a
+            >
+          </li>
+          <li class="nav-item" role="presentation" *ngFor="let menu of menus; let i=index">
+            <a class="nav-link"  id="ex2-tab-{{i+1}}" data-mdb-toggle="tab"
+              href="#aex2-tbs-{{i+1}}" role="tab"  aria-controls="ex2-tabs-i+1" aria-selected="false">Menú {{i+1}}</a>
+                </li>
+            </ul>
+            <!-- Tabs navs -->
+
+            <!-- Tabs content -->
+            <div class="tab-content" id="ex2-content">
+                <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
+                    <div class="row">
+                        <div class="col-md-4">Nombre<input type="text" id="formControlLg" name="nombre" class="form-control form-control-lg" value="{{restaurante.nombreRestaurante}}" disabled/></div>
+                        <div class="col-md-4">Razón Social<input type="text" id="formControlLg" name="RazonSocial" class="form-control form-control-lg" value="{{restaurante.razonSocial}}" disabled/></div>
+                        <div class="col-md-4">Email <input type="text" id="formControlLg" name="email" class="form-control form-control-lg" value="{{restaurante.email}}" disabled/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Horario <input type="text" id="formControlLg" name="Horario" class="form-control form-control-lg" value="{{restaurante.horario}}" disabled/></div>
+                        <div class="col-md-4">Celular <input type="text" id="formControlLg" name="Celular" class="form-control form-control-lg" value="{{restaurante.celular}}" disabled/></div>
+                        <div class="col-md-4">Número de habilitación <input type="text" id="formControlLg" name="nroHab" class="form-control form-control-lg" value="{{restaurante.nroHabilitacion}}" disabled/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">RUT <input type="text" id="formControlLg" name="rut" class="form-control form-control-lg" value="{{restaurante.rut}}" disabled/></div>
+                        <div class="col-md-4">Precio de envío <input type="text" id="formControlLg" name="precioEnvio" class="form-control form-control-lg" value="{{restaurante.precioEnvio}}" disabled/></div>
+                        <div class="col-md-4">Dirección <input type="text" id="formControlLg" name="direccion" class="form-control form-control-lg" value="{{restaurante.direccion}}" disabled/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">Descripción<input type="text" id="formControlLg" name="Descripcion" class="form-control form-control-lg" value="{{restaurante.descripcionMenues}}" disabled/></div>
+                    </div>
+                    <div class="container-img">
+                        <img width="200px" src="{{this.s3Url}}/{{restaurante.foto}}">
+                    </div>
+                </div>
+
+
+
+
+
+                <div *ngFor="let menu of menus; let i=index" class="tab-pane fade" id="aex2-tbs-{{i+1}}" role="tabpanel" aria-labelledby="ex2-tab-i+1">
+                    <div class="row">
+                        <div class="col-md-4">Nombre<input type="text" id="formControlLg" name="nombre" class="form-control form-control-lg" value="{{menu.nombre}}" disabled/></div>
+                        <div class="col-md-4">Categoría<input type="text" id="formControlLg" name="categoria" class="form-control form-control-lg" value="{{menu.categoria}}" disabled/></div>
+                        <div class="col-md-4">Promoción
+                            <!-- If promocion true -->
+                            <div class="form-check" *ngIf="menu.promocion">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked disabled/>
+                                <label class="form-check-label" for="flexCheckChecked"> Si </label>
+                            </div>
+                            <div *ngIf="!menu.promocion" class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled />
+                                <label class="form-check-label" for="flexCheckDefault">  No </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Costo <input type="text" id="formControlLg" name="costo" class="form-control form-control-lg" value="{{menu.costo}}" disabled/></div>
+                        <div class="col-md-3">Descuento <input type="text" id="formControlLg" name="descuento" class="form-control form-control-lg" value="{{menu.descuento}}" disabled/></div>
+                        <div class="col-md-6">Descripción<input type="text" id="formControlLg" name="Descripcion" class="form-control form-control-lg" value="{{menu.descripcion}}" disabled/></div>
+                    </div>
+                    <div class="container-img">
+                        <img src="{{this.s3Url}}/{{menu.imagen}}" id="img-menu">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- Tabs content -->
+            <div class="buttons-cont">
+                <button type="button" class="btn btn-danger btn-rounded" (click)="seleccionar()" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario">Rechazar</button>
+                <button type="button" class="btn btn-warning btn-rounded" (click)="seleccionar()" data-mdb-toggle="modal" data-mdb-target="#altaUsuario">Aprobar</button>
+            </div>
+            <div class="modal fade" id="rechazarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header delete">
+                            <h5 class="modal-title" id="exampleModalLabel">Rechazar Restaurante</h5>
+                            <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                        </div>
+                        <div class="modal-body" *ngIf="ready">
+                            <h6 class="delete-h6">Se rechazará la solicitud del restaurante {{restaurante.nombreRestaurante}}</h6>
+                        </div>
+                        <div class="form-outline" (ngSubmit)="rechazarRestaurante()" novalidate>
+                            <input type="text" id="form12" class="form-control" [(ngModel)]="motivo" />
+                            <label class="form-label" for="form12">Ingrese motivo de rechazo</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" data-mdb-dismiss="modal">
+                      Cancelar
+                      </button>
+
+                            <button type="button" (click)="rechazarRestaurante()" data-mdb-dismiss="modal" class="btn btn-warning btn-rounded delete">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="altaUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Aprobar Restaurante</h5>
+                            <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                        </div>
+                        <div class="modal-body">
+                            <h6 class="h6">Se arpobará la solicitud del restaurante {{restaurante.nombreRestaurante}}</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button (click)="aprobarRestaurante()" type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

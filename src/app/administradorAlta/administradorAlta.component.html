@@ -1,0 +1,28 @@
+<app-nav-menu></app-nav-menu>
+<div class="container">
+    <div class="row">
+        <div class="redondo contitulo col-md-1 "></div>
+        <div class="redondo contitulo col-md-10 bg-white">
+            <div class="title div-s">
+                <span> Alta de Administrador</span>
+            </div>
+            <form #f="ngForm" (ngSubmit)="registroAdmin()" novalidate>
+                <div class="form_container">
+                    <p>Ingresa el correo electrónico</p>
+                    <div class="form-outline">
+                        <input type="email" name="email" class="form-control" [(ngModel)]="email" required />
+                        <label class="form-label" for="typeEmail">Email</label>
+                    </div>
+                    <p>Ingresa la contraseña</p>
+                    <div class="form-outline">
+                        <input type="password" name="password" class="form-control" [(ngModel)]="password" required />
+                        <label class="form-label" for="typePassword">Contraseña</label>
+                    </div>
+                </div>
+                <div class="conteiner_action">
+                    <button type="submit" class="btn btn-info btn-rounded confirmar">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<app-nav-menu></app-nav-menu>
+-->
+<div class="container">
+    <div class="row text-center">
+        <h2>Estadísticas</h2>
+    </div>
+    <div class="row">
+        <div class="redondo contitulo col-md-4 bg-white chart-container">
+            <div class="title div-s">
+                <span>Restaurantes con más ventas.</span>
+            </div>
+            <canvas id="myCanvasId" width="auto">{{ myChart }}</canvas>
+        </div>
+        <div class="redondo contitulo col-md-5 bg-white chart-container">
+            <div class="title div-s">
+                <span>Restaurante con mejor calificación(Cliente)</span>
+            </div>
+            <canvas id="myCanvasId2">{{ myChart2 }}</canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="redondo contitulo col-md-5 bg-white chart-container">
+            <div class="title div-s">
+                <span>Mejor Tiempo promedio de entregas.</span>
+            </div>
+            <canvas id="myCanvasId3">{{ myChart3 }}</canvas>
+        </div>
+        <div class="redondo contitulo col-md-4 bg-white chart-container">
+            <div class="title div-s">
+                <span>Restaurante con mejor calificación(VPI).</span>
+            </div>
+            <canvas id="myCanvasId4">{{ myChart4 }}</canvas>
+        </div>
+    </div>
+</div>
+
+<!-- <app-footer></app-footer> -->

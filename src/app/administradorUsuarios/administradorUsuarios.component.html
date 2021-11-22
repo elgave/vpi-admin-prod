@@ -1,0 +1,126 @@
+<app-nav-menu></app-nav-menu>
+<div class="container">
+    <div class="row">
+        <div class="redondo contitulo col-md-1 "></div>
+        <div class="redondo contitulo col-md-10 bg-white">
+            <div class="title div-s">
+                <span> Listado de Usuarios </span>
+            </div>
+
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="capturar()">
+                        <option selected value="1">Clientes</option>
+                        <option value="2">Restaurantes</option>
+                    </select>
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [(ngModel)]="isBloqueado" data-md-icheck (change)="capturarBloqueado($event)" />
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Bloqueados</label>
+                </div>
+
+                <form class="search-container" action="//llamaswill.tumblr.com/search">
+                    <input id="search-box" type="text" class="search-box" (keyup)="onKey($event)" />
+                    <label for="search-box"><span class="fas fa-search"></span></label>
+                    <input type="submit" id="search-submit" />
+                </form>
+                </div>
+            </nav>
+            
+            <div class="table_usuarios">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Nombre</th>
+                            <th>Celular</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let usuario of usuarios">
+                        <tr>
+                            <!--  <td><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"></td>-->
+                            <td>{{usuario.email}}</td>
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.celular}}</td>
+                            <td>
+
+                                <!--eliminar cuenta de usuario -->
+                                <a data-mdb-toggle="modal" data-mdb-target="#eliminarUsuario"  (click)="seleccionar(usuario)" ><i class="fas fa-backspace"></i></a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="eliminarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header delete">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                                                <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6 class="delete-h6">Se eliminará al usuario de forma permanente</h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" data-mdb-dismiss="modal"> Cancelar </button>
+                                                <button type="button" class="btn btn-warning btn-rounded delete" data-mdb-dismiss="modal" (click)="eliminarUsuario()" >Confirmar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin del modal -->
+
+                                <!--bloquear usuario -->
+                                <a *ngIf="!isBloqueado" (click)="seleccionar(usuario)" data-mdb-toggle="modal" data-mdb-target="#bloquearUsuario"><i class="fas fa-ban"></i></a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="bloquearUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Bloquear usuario</h5>
+                                                <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                                            </div>
+                                            <div class="modal-body" *ngIf="ready">
+                                                <h6 class="h6">Se bloqueará al usuario {{usuario.nombre}}</h6>
+                                            </div>
+                                            <br>
+                                            <div class="form-outline" (ngSubmit)="bloquearUsuario()" novalidate>
+                                                <input type="text" id="form12" class="form-control" [(ngModel)]="motivo" />
+                                                <label class="form-label" for="form12">Ingrese motivo de bloqueo</label>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Cerrar</button>
+                                                <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark" (click)="bloquearUsuario()">Confirmar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin del modal -->
+
+                                <!--desbloquear usuario -->
+                                <a *ngIf="isBloqueado" data-mdb-toggle="modal" data-mdb-target="#desbloquearUsuario"><i class="far fa-check-circle"></i></a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="desbloquearUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Desbloquear usuario</h5>
+                                                <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                                            </div>
+                                            <div class="modal-body" *ngIf="ready">
+                                                <h6 class="h6">Se desbloqueará el usuario {{usuario.nombre}}</h6>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Cerrar</button>
+                                                <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Confirmar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin del modal -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
