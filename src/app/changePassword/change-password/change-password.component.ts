@@ -34,7 +34,6 @@ export class ChangePasswordComponent implements OnInit {
       });
       return;
     }
-    this.tokenPassword = this.activatedRoute.snapshot.params['tokenPaassword'];
     this.dto = new ChangePass(this.password, this.confirmarPassword, this.tokenPassword);
     this.emailPasswordService.changePasswords(this.dto).subscribe(
       data =>{

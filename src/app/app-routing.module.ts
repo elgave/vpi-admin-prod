@@ -16,14 +16,14 @@ import { RegistroRestauranteDetalleComponent } from './registroRestauranteDetall
 const routes: Routes = [
   /*pantallas*/  
   /****/
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [guard], data:{expectedRol: ['Admin']}},
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'changePassword/:tokenPassword', component: ChangePasswordComponent},
-  {path: 'restaurantes', component: AdministradorRestaurantesComponent},
-  {path: 'altaAdministrador', component: AdministradorAltaComponent},
-  {path: 'usuarios', component: AdministradorUsuariosComponent},
-  {path: 'restauranteDetalle/:nombreRest', component: RegistroRestauranteDetalleComponent},
+  {path: 'cambioContraseña', component: ChangePasswordComponent},
+  {path: 'restaurantes', component: AdministradorRestaurantesComponent, canActivate: [guard], data:{expectedRol: ['Admin']}},
+  {path: 'altaAdministrador', component: AdministradorAltaComponent, canActivate: [guard], data:{expectedRol: ['Admin']}},
+  {path: 'usuarios', component: AdministradorUsuariosComponent, canActivate: [guard], data:{expectedRol: ['Admin']}},
+  {path: 'restauranteDetalle/:nombreRest', component: RegistroRestauranteDetalleComponent, canActivate: [guard], data:{expectedRol: ['Admin']}},
   {path: '**', redirectTo: '', pathMatch: 'full'}
   
 
