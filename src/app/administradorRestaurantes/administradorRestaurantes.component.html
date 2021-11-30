@@ -32,7 +32,8 @@
                             <th>Direccion</th>
                             <th>RUT</th>
                             <th *ngIf="pendientes">Estado</th>
-                            <th *ngIf="!pendientes">CalificacionVPI</th>
+                            <th *ngIf="!pendientes">Calificacion VPI</th>
+                            <th *ngIf="!pendientes">Calificacion Gral.</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -45,6 +46,7 @@
                             <td>{{restaurante.rut}}</td>
                             <td *ngIf="!restaurante.confirmado">Pendiente</td>
                             <th *ngIf="!pendientes">{{restaurante.calificacionVPI}}</th>
+                            <th *ngIf="!pendientes">{{restaurante.calificacionGral}}</th>
                             <td>
                                 <!--aporbar alta de usuario -->
                                 <!--Antes:  <a (click)="seleccionar(restaurante)"><i class="far fa-check-circle"></i></a>-->
