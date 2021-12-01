@@ -55,7 +55,7 @@
                                 <!--<a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario"><i class="fas fa-backspace"></i></a>-->
                                 <!--Esto genera la calificación VPI para el restaurante -->
                                 <!-- creo que el <a> va con un *ngIf si el estado es aprobado -->
-                                <a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#califiacionVPI"><i class="fas fa-star"></i></a>
+                                <a *ngIf="!pendientes" (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#califiacionVPI"><i class="fas fa-star"></i></a>
                                 <!-- Modal -->
                                 <div class="modal fade" id="califiacionVPI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
