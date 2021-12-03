@@ -204,13 +204,13 @@ export class HomeComponent implements OnInit {
         this.restaurantesTiempo = data;
         this.ready = true;
         this.myChart3 = new Chart('myCanvasId3', {
-          type: 'line',
+          type: 'bar',
           data: {
-              labels:  [],
+              labels: [],
               datasets: [{
-                  label: 'Tiempo de entrega promedio',
+                  label: 'Tiempo de entrega',
                   data: [],
-                  /* backgroundColor: [
+                  backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
                       'rgba(255, 206, 86, 0.2)',
@@ -225,7 +225,7 @@ export class HomeComponent implements OnInit {
                       'rgba(75, 192, 192, 1)',
                       'rgba(153, 102, 255, 1)',
                       'rgba(255, 159, 64, 1)'
-                  ], */
+                  ],
                   borderWidth: 1
               }]
           },
